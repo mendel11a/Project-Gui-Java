@@ -3,6 +3,7 @@ package graphics;
 import animals.Animal;
 import tournament.CourierTournament;
 import tournament.RegularTournament;
+import tournament.Tournament;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -131,12 +132,14 @@ public class CompetitionPanel extends JPanel implements ActionListener {
         {
         	Object[] Tour_options = {"Courier Tournament", "Regular Tournament"};
             this.tournament_choice = pop_up(Tour_options, Tour_options.length - 1,"                   Choose a tournament", "Tournament");
-            if(tournament_choice==0) {
+           
+            if(tournament_choice==0) //courier tournament
+            {
             	this.courier=new CourierTournament(animal_arr);
-                printMessage("    Choose 6 animals so the tournament can start", "Information");
-
+                printMessage("    Choose 5 animals so the tournament can start", "Information");
             }
-            if(tournament_choice==1) {
+            if(tournament_choice==1)// regular tournament
+            {
             	this.regular=new RegularTournament(animal_arr);
             }
             
@@ -148,7 +151,17 @@ public class CompetitionPanel extends JPanel implements ActionListener {
         {
             try {
                 AddAnimalDialog animal = new AddAnimalDialog(vec, this.compet_choice);
-                animal.choose_animal();
+                
+                if(tournament_choice==0) {
+                	if (vec.size()<6) {
+                		animal.choose_animal();
+                		this.courier.starter(vec.lastElement(), vec.size()-1);
+                	}
+                }
+                if(tournament_choice==1) {
+                	animal.choose_animal();
+            		this.courier.starter(vec.lastElement(), vec.size()-1);
+                }
                 repaint();
                 System.out.println(vec.toString());
             }
@@ -161,7 +174,8 @@ public class CompetitionPanel extends JPanel implements ActionListener {
         if(choice.equals("Clear"))
         {
             vec.clear();
-            repaint();
+        	Tournament.StopThreads();
+
         }
 
         if(choice.equals("Eat"))
