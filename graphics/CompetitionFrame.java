@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
  * Class that describes a competition and all his functions
  * @author Mendel Amar id:337790786
  */
-public class CompetitionFrame extends JFrame implements ActionListener
+public class CompetitionFrame extends JFrame implements ActionListener,Runnable
 {
     /**
 	 * 
@@ -68,6 +68,11 @@ public class CompetitionFrame extends JFrame implements ActionListener
             System.exit(0);
         }
     }
+	@Override
+	public void run() {
+		
+		
+	}
 
 
 }

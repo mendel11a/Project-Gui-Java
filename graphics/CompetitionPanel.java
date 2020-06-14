@@ -1,6 +1,8 @@
 package graphics;
 
 import animals.Animal;
+import tournament.CourierTournament;
+import tournament.RegularTournament;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -16,19 +18,17 @@ import java.util.Vector;
  * @author Mendel Amar id:337790786
  */
 public class CompetitionPanel extends JPanel implements ActionListener {
-
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private BufferedImage img = null;
- 
-
-
-
     private JPanel buttonPanel;
     private int compet_choice = -1;
+    private int tournament_choice = -1;
     private Vector<Animal> vec= new Vector<>();
+    private RegularTournament regular; //An object that is responsible for regular tournament
+    private CourierTournament courier; //An object that is responsible for courier tournament
+    private Animal[][] animal_arr;// the animals of each competition
+    
+    
     /**
      * Competition default Ctor
      */
@@ -108,6 +108,11 @@ public class CompetitionPanel extends JPanel implements ActionListener {
                 obg,
                 obg[size]);
     }
+    
+    public static void printMessage(String infoMessage, String titleBar)
+    {
+        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.PLAIN_MESSAGE);
+    }
     /**
      * Choose button action
      *
@@ -124,7 +129,17 @@ public class CompetitionPanel extends JPanel implements ActionListener {
 
         if(choice.equals("Competition"))
         {
-//            vec.clear();
+        	Object[] Tour_options = {"Courier Tournament", "Regular Tournament"};
+            this.tournament_choice = pop_up(Tour_options, Tour_options.length - 1,"                   Choose a tournament", "Tournament");
+            if(tournament_choice==0) {
+            	this.courier=new CourierTournament(animal_arr);
+                printMessage("    Choose 6 animals so the tournament can start", "Information");
+
+            }
+            if(tournament_choice==1) {
+            	this.regular=new RegularTournament(animal_arr);
+            }
+            
             Object[] options = {"Air", "Water", "Terrestrial"};
             this.compet_choice = pop_up(options,options.length-1,"                   Choose a competition:", "CompetitionDialog");
         }
