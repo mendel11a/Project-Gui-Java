@@ -5,9 +5,7 @@ import animals.AnimalThread;
 
 public class CourierTournament extends Tournament {
 	
-	
-	
-	   public CourierTournament(Animal[][] setup_arr){
+	public CourierTournament(Animal[][] setup_arr){
 	        super(setup_arr);
 	    }
 	
