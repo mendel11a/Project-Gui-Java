@@ -16,6 +16,12 @@ public class AnimalThread implements Runnable {
 		this.neededDistance=0;
 	}
 	
+	public AnimalThread(Boolean start,Boolean finish,Animal participant) {
+		this.finishFlag=start;
+		this.startFlag=finish;
+		this.participant=participant;
+	}
+	
 	
 	@Override
 	public void run() {
