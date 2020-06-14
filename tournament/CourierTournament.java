@@ -1,6 +1,7 @@
 package tournament;
 
 import animals.Animal;
+import animals.AnimalThread;
 
 public class CourierTournament extends Tournament {
 	
@@ -16,8 +17,9 @@ public class CourierTournament extends Tournament {
 		Scores scores=new Scores();
 		
 		for(int i=0;i<animal_arr.length;++i) {
-			Boolean newFlag = false;
-            Referee newReferee = new Referee(String.valueOf(i+1),scores,newFlag);
+			Boolean finishFlag = false;
+            Thread thread = new Thread(new AnimalThread(startFlag, finishFlag, animal_arr[i][0]));
+            Referee newReferee = new Referee(String.valueOf(i+1),scores,finishFlag);
 		}
 	}
 
