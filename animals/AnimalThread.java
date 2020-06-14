@@ -8,6 +8,7 @@ public class AnimalThread implements Runnable {
 	private static int Time=700;
 	private Boolean start_courier;
 	private Boolean start_regular;
+	private Boolean iste;
 	
 	public AnimalThread() {
 		this.finishFlag=false;
