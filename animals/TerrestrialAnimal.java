@@ -24,12 +24,13 @@ public abstract class TerrestrialAnimal extends Animal {
 	public TerrestrialAnimal(Point location,double totalDistance,String name,gender gender,double weight,double speed,Medal[] medals,int legs) {
 		super(location,totalDistance,name,gender,weight,speed,medals);
 		this.noLegs=legs;
+		this.setMaxDistance(900);
 	}
 	/**
 	 * Default Ctor
 	 */
 	public TerrestrialAnimal() {
-		this(new Point(0,20),0,"None",gender.Male,0,0,new Medal[1],2);
+		this(new Point(0,20),0,"None",gender.Male,0,0,new Medal[1],2); 
 	}
 	/**
 	 * To string function

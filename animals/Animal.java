@@ -40,7 +40,8 @@ public abstract class Animal extends Mobile implements ILocatable,Cloneable,IAni
     protected Orientation orien;
 	protected int maxEnergy;
     protected int current_energy;
-    private double distance;
+    private double made_distance;
+    private double max_distance;
 	protected int energyPerMeter;
 	protected CompetitionPanel pan;
 	protected BufferedImage img1, img2, img3, img4;
@@ -61,7 +62,7 @@ public abstract class Animal extends Mobile implements ILocatable,Cloneable,IAni
 	    this.maxEnergy = 60;
 	    this.current_energy = 30;
 	    this.energyPerMeter = 4;
-	    this.distance = 0;
+	    this.made_distance = 0;
 	    this.pan = new CompetitionPanel();
 	}
 	
@@ -75,7 +76,7 @@ public abstract class Animal extends Mobile implements ILocatable,Cloneable,IAni
 	    this.maxEnergy = 60;
 	    this.current_energy = 30;
 	    this.energyPerMeter = 4;
-	    this.distance = 0;
+	    this.made_distance = 0;
 	    this.pan = new CompetitionPanel();
 	}
 	/**
@@ -144,13 +145,24 @@ public abstract class Animal extends Mobile implements ILocatable,Cloneable,IAni
 	 * function that returns the distance of the animal
 	 */
 	public double getDistance() {
-		return this.distance;
+		return this.made_distance;
+	}
+	public double getMaxDistance() {
+		return this.max_distance;
 	}
 	
 	
 	public boolean setDistance(double dist) {
 		if(dist>=0) {
-			this.distance=dist;
+			this.made_distance=dist;
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean setMaxDistance(double dist) {
+		if(dist>=0) {
+			this.max_distance=dist;
 			return true;
 		}
 		return false;
@@ -168,10 +180,10 @@ public abstract class Animal extends Mobile implements ILocatable,Cloneable,IAni
         else {
             this.current_energy += energy;
         }
-        if(this.current_energy > 0 && this.current_energy > this.energyPerMeter) {
+        if(this.current_energy > 0 && this.current_energy > this.energyPerMeter) { 
             super.setLocation(new Point((int) (super.getLocation().getX()+getSpeed()),super.getLocation().getY()));
             this.current_energy -= this.energyPerMeter;
-            ++distance;
+            ++made_distance;
         }
         return true;
     }

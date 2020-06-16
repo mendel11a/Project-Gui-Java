@@ -25,13 +25,15 @@ public abstract class WaterAnimal extends Animal {
 	public WaterAnimal(Point location,double totalDistance,String name,gender gender,double weight,double speed,Medal[] medals,double diveDept) {
 		super(location,totalDistance,name,gender,weight,speed,medals);
 		this.diveDept=diveDept;
+
+		this.setMaxDistance(930);
 	}
 	/**
 	 * Default Ctor
 	 */
 	public WaterAnimal() {
-		this(new Point(50,0),0,"None",gender.Male,0,0,new Medal[1],0);
-	}
+		this(new Point(50,0),0,"None",gender.Male,0,0,new Medal[1],0); 
+		}
 	/**
 	 * Method that makes him dive deeper 
 	 */

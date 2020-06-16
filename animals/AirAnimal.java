@@ -24,13 +24,15 @@ public abstract class AirAnimal extends Animal {
 	public AirAnimal(Point location,double totalDistance,String name,gender gender,double weight,double speed,Medal[] medals,double wing) {
 		super(location,totalDistance,name,gender,weight,speed,medals);
 		this.wingspan=wing;
+		this.setMaxDistance(880);
 	}
 	/**
 	 * Default Ctor
 	 */
 	public AirAnimal() {
 		this(new Point(0,100),0,"None",gender.Male,0,0,new Medal[1],0);
-	}
+		 
+		}
 	/**
 	 * To string function
 	 */
