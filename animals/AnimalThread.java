@@ -10,12 +10,12 @@ public class AnimalThread implements Runnable {
 	private double neededDistance;
 	private Boolean startFlag;
 	private Boolean finishFlag;
-	private static long Time=1000;
+	private static long Time=500;
+	private static long Time2=300;
 	int choice_compet;
-	private int first_team=0;
-	private int second_team=4;
 	private Boolean start=true;
 	private Boolean winner=false;
+    int counter=0;
 
 	
 	public AnimalThread() {
@@ -52,7 +52,7 @@ public class AnimalThread implements Runnable {
 					while(true) {
 					for(int i = 0; i < Tournament.courier_arr.size(); i++) {
 						try {
-	                        Thread.sleep(Time);
+	                        Thread.sleep(Time2);
 	                    } catch (InterruptedException e) {
 	                        e.printStackTrace();
 	                    }
@@ -68,51 +68,6 @@ public class AnimalThread implements Runnable {
 						}
 					}
 					}
-					/*
-					while (true) {
-						Tournament.courier_arr.get(first_team).eat(10);
-						Tournament.courier_arr.get(second_team).eat(10);
-					
-	                    try {
-	                        Thread.sleep(Time);
-	                    } catch (InterruptedException e) {
-	                        e.printStackTrace();
-	                    }
-
-	                    System.out.println("Moving First Team");
-	                    if (first_team<= 2) {//make the next animal of the first team move
-	                        if (Tournament.courier_arr.get(first_team).getLocation().getX() >= Tournament.courier_arr.get(first_team + 1).getLocation().getX() - 60) {
-	                            ++first_team;
-	                        }
-	                    }
-	                    System.out.println("Moving SEcond Team");
-	                    if (second_team <= 6) {//make the next animal of the second team move
-	                        if (Tournament.courier_arr.get(second_team).getLocation().getX() >= Tournament.courier_arr.get(second_team + 1).getLocation().getX() - 60) {
-	                            ++second_team;
-	                        }
-	                    }
-	                    if (second_team == 7) 
-                        	Tournament.courier_arr.get(second_team).eat(10);
-	                    
-	                    if(second_team==7) {
-		                    if (Tournament.courier_arr.get(first_team).getLocation().getX() >= Tournament.courier_arr.get(first_team).getDistance()) {
-		                    	String win1=Tournament.courier_arr.get(0).getName()+","+Tournament.courier_arr.get(1).getName()+","+Tournament.courier_arr.get(2).getName()+","+
-		                    			Tournament.courier_arr.get(3).getName();
-		                        JOptionPane.showMessageDialog(null, "The Winners are Team 1: "+win1,
-		                                "Message", JOptionPane.INFORMATION_MESSAGE);
-		                        System.exit(0);
-		                    }
-	
-		                    if (Tournament.courier_arr.get(second_team).getLocation().getX() >= Tournament.courier_arr.get(second_team).getDistance()) {
-		                    	String win2=Tournament.courier_arr.get(4).getName()+","+Tournament.courier_arr.get(5).getName()+","+Tournament.courier_arr.get(6).getName()+","+
-		                    			Tournament.courier_arr.get(7).getName();
-		                    	JOptionPane.showMessageDialog(null, "Winners: Team 2:"+win2,
-		                                "Message", JOptionPane.INFORMATION_MESSAGE);
-		                        System.exit(0);
-		                    }
-	                    }
-	                }
-	                */
 					
 				}
 				
@@ -122,7 +77,7 @@ public class AnimalThread implements Runnable {
 		}
 		
 		else if(choice_compet==1) {//for regular competition		
-	            synchronized (this.participant) {
+	            synchronized (this) {
 	                synchronized(start){
 	                    if (start){
 	                        try {
@@ -145,9 +100,8 @@ public class AnimalThread implements Runnable {
 	                    {
 	                        break;
 	                    }
-	                    this.participant.getName();
 	                    this.participant.eat(10); // The animal moves
-	                   if (this.participant.getLocation().getX()+this.participant.getSpeed() >= this.participant.getMaxDistance()) {
+	                   if (this.participant.getLocation().getX() >= this.participant.getMaxDistance()) {
                             if (winner) {
                                 break;
                             } 

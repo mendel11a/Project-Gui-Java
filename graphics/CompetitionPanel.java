@@ -28,7 +28,8 @@ public class CompetitionPanel extends JPanel implements ActionListener {
     private RegularTournament regular; //An object that is responsible for regular tournament
     private CourierTournament courier; //An object that is responsible for courier tournament
     private Animal[][] animal_arr;// the animals of each competition
-    
+    private static int current_num_animals=8;
+    private static int num_of_team=1;
     
     /**
      * Competition default Ctor
@@ -83,6 +84,7 @@ public class CompetitionPanel extends JPanel implements ActionListener {
         		animal.drawObject(g);// printing all the animals i added on the competition panel
         	}
         }
+        repaint();
     }
     /**
      * Method that feed all the animals in the same time
@@ -134,9 +136,19 @@ public class CompetitionPanel extends JPanel implements ActionListener {
             this.tournament_choice = pop_up(Tour_options, Tour_options.length - 1,"                   Choose a tournament", "Tournament");
            
             if(tournament_choice==0) //courier tournament
-            {
+            {	
             	this.courier=new CourierTournament(animal_arr);
-                printMessage("    Choose 5 animals so the tournament can start", "Information");
+            	int temp=current_num_animals-4;
+            	if (temp<1) 
+            	{
+            		temp=current_num_animals;
+            	}
+            	if(current_num_animals==4)
+                	++num_of_team;
+            	
+                printMessage("  You have to choose "+ current_num_animals +" animals so the tournament can start"+"\n"+"  You need to complete "+ temp +" animals of Team "
+            	+num_of_team, "Information");
+                
             }
             if(tournament_choice==1)// regular tournament
             {
@@ -152,15 +164,20 @@ public class CompetitionPanel extends JPanel implements ActionListener {
             try {
                 AddAnimalDialog animal = new AddAnimalDialog(vec, this.compet_choice);
                 
-                if(tournament_choice==0) {
-                	if (vec.size()<6) {
+                if(tournament_choice==0) {// courier tournament
+                	if (vec.size()<8) {
                 		animal.choose_animal();
+                        --current_num_animals;
                 		this.courier.starter(vec.lastElement(), vec.size()-1);
                 	}
+                	if (vec.size()==8){
+                		JOptionPane.showMessageDialog(null, "You have already choose 8 animals",
+                                "Message", JOptionPane.INFORMATION_MESSAGE);
+                	}
                 }
-                if(tournament_choice==1) {
+                if(tournament_choice==1) {//regular tournament
                 	animal.choose_animal();
-            		this.courier.starter(vec.lastElement(), vec.size()-1);
+            		this.regular.starter(vec.lastElement(), vec.size()-1);
                 }
                 repaint();
                 System.out.println(vec.toString());

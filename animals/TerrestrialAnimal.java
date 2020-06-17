@@ -24,7 +24,7 @@ public abstract class TerrestrialAnimal extends Animal {
 	public TerrestrialAnimal(Point location,double totalDistance,String name,gender gender,double weight,double speed,Medal[] medals,int legs) {
 		super(location,totalDistance,name,gender,weight,speed,medals);
 		this.noLegs=legs;
-		this.setMaxDistance(900);
+		this.setMaxDistance(1020);
 	}
 	/**
 	 * Default Ctor

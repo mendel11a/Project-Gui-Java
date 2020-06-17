@@ -57,7 +57,7 @@ public class Snake extends TerrestrialAnimal implements IReptile {
 	 * Default Ctor
 	 */
 	public Snake() {
-		this(new Point(0,0),10,"Karl",gender.Hermaphrodite,50,2,new Medal[1],0,Poisonous.NotPoisonous,50,PoisonLevel.Medium);
+		this(new Point(0,0),10,"Karl",gender.Hermaphrodite,50,15,new Medal[1],0,Poisonous.NotPoisonous,50,PoisonLevel.Medium);
 		Medal[] medals=new Medal[1];
 		medals[0]=new Medal("Montreal",2016,type.bronze);
 		super.setMedals(medals);

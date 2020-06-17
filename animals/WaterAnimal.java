@@ -25,8 +25,7 @@ public abstract class WaterAnimal extends Animal {
 	public WaterAnimal(Point location,double totalDistance,String name,gender gender,double weight,double speed,Medal[] medals,double diveDept) {
 		super(location,totalDistance,name,gender,weight,speed,medals);
 		this.diveDept=diveDept;
-
-		this.setMaxDistance(930);
+		this.setMaxDistance(950);
 	}
 	/**
 	 * Default Ctor

@@ -32,7 +32,7 @@ public class Cat extends TerrestrialAnimal {
 	 * Default Ctor
 	 */
 	public Cat() {
-		this(new Point(0,0),10,"Minou",gender.Male,10,8,new Medal[1],4,false);
+		this(new Point(0,0),10,"Minou",gender.Male,10,20,new Medal[1],4,false);
 		Medal[] medals=new Medal[1];
 		medals[0]=new Medal("Haifa",2017,type.silver);
 		super.setMedals(medals);
