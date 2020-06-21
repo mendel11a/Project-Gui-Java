@@ -43,7 +43,7 @@ public class Alligator extends WaterAnimal implements IReptile{
 		super.setMedals(medals);
 		this.terrestrial=new TerrestrialAnimal(new Point(60,55),30,"Lacoste",gender.Male,300,80,new Medal[1],0) {};
 
-	}
+	}	
 	/**
 	 * To string function
 	 */

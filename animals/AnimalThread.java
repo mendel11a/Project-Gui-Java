@@ -1,10 +1,16 @@
+/**
+ * Simon Mendel Amar
+ * 337790786
+ */
 package animals;
 
 import javax.swing.JOptionPane;
 
 import mobility.Point;
 import tournament.Tournament;
-
+/**
+ * Animal class that describe an animal thread and makes the thread run
+ */
 public class AnimalThread implements Runnable {
 	private Animal participant;
 	private double neededDistance;
@@ -17,20 +23,27 @@ public class AnimalThread implements Runnable {
 	private Boolean winner=false;
     int counter=0;
 
-	
+    /**
+	 * AnimalThread default Ctor
+	 */
 	public AnimalThread() {
 		this.finishFlag=false;
 		this.startFlag=false;
 		this.neededDistance=0;
 	}
-	
+	/**
+	 * AnimalThread Ctor
+	 * @param start,finish,participant,choice
+	 */
 	public AnimalThread(Boolean start,Boolean finish,Animal participant,int choice) {
 		this.finishFlag=start;
 		this.startFlag=finish;
 		this.participant=participant;
 		this.choice_compet=choice;
 	}
-	
+	/**
+	 * run function
+	 */
 	
 	@Override
 	public void run() {
@@ -62,7 +75,7 @@ public class AnimalThread implements Runnable {
 							if(i % 4 == 0) winningTeam = 1;
 							else
 								winningTeam = 2;
-							JOptionPane.showMessageDialog(null, "The Winner Team Is "  + winningTeam,
+							JOptionPane.showMessageDialog(null, "The Winner Is Team : "  + winningTeam,
 		                                "Message", JOptionPane.INFORMATION_MESSAGE);
 		                        System.exit(0);
 						}
