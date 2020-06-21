@@ -1,14 +1,29 @@
+/**
+ * Simon Mendel Amar
+ * 337790786
+ */
+
 package tournament;
 
 import animals.Animal;
 import animals.AnimalThread;
-
+/**
+ * RegularTournament class that describe a regular Tournament
+ */
 public class RegularTournament extends Tournament {
 	int choose_regular=1;
+	/**
+	 * RegularTournament Ctor
+	 * @param setup_arr
+	 */
 	public RegularTournament(Animal[][] setup_arr)
 	{
         super(setup_arr);
     }
+	/**
+	 * Setup function that build the array of the animal thread
+	 * @param animal_arr
+	 */
 	@Override
 	protected void setup(Animal[][] animal_arr) {
 		Boolean startFlag=false;
@@ -22,7 +37,10 @@ public class RegularTournament extends Tournament {
 			}
 		}
 	}
-	
+	/**
+	 * Starter function that initialize an animal and makes the thread start
+	 * @param new_animal,i
+	 */
 	 public void starter(Animal new_animal, int i)
 	    {
 	        Animal[][] temp = new Animal[1][i+1];
