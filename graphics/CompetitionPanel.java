@@ -30,6 +30,7 @@ public class CompetitionPanel extends JPanel implements ActionListener {
     private Animal[][] animal_arr;// the animals of each competition
     private static int current_num_animals=8;
     private static int num_of_team=1;
+    private int competiton_choosed=0;
     
     /**
      * Competition default Ctor
@@ -132,9 +133,11 @@ public class CompetitionPanel extends JPanel implements ActionListener {
 
         if(choice.equals("Competition"))
         {
-        	Object[] Tour_options = {"Courier Tournament", "Regular Tournament"};
-            this.tournament_choice = pop_up(Tour_options, Tour_options.length - 1,"                   Choose a tournament", "Tournament");
-           
+        	if(competiton_choosed==0) {
+	        	Object[] Tour_options = {"Courier Tournament", "Regular Tournament"};
+	            this.tournament_choice = pop_up(Tour_options, Tour_options.length - 1,"                   Choose a tournament", "Tournament");
+        	}
+        	this.competiton_choosed=1;
             if(tournament_choice==0) //courier tournament
             {	
             	this.courier=new CourierTournament(animal_arr);
